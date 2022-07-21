@@ -1,15 +1,18 @@
 import { FC } from "react";
-import { Box, Typography, Grid, Stack } from "@mui/material";
+import { Box, Typography, Grid, Stack, Checkbox } from "@mui/material";
+import styles from "../styles/TodoList.module.scss";
 
-const TodoList: FC = () => {
-  const dummyTodoList = [
-    {
-      title: "잠만 자기",
-    },
-  ];
+interface ITodoList {
+  todoList: Array<string>;
+}
+
+const TodoList: FC<ITodoList> = ({ todoList }) => {
   return (
     <>
-      <Typography>투두</Typography>
+      <Stack direction="row" alignItems="center">
+        <Checkbox style={{ color: "#F6D28C" }} />
+        <Typography>{todoList.title}</Typography>
+      </Stack>
     </>
   );
 };

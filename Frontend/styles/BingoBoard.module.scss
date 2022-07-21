@@ -1,0 +1,13 @@
+.bingo_box {
+  overflow: hidden;
+  word-break: keep-all;
+}
+
+.bingo_box_text {
+  position: absolute;
+  // z-index: 1;
+  top: 50%;
+  left: 50%;
+  font-size: small;
+  transform: translate(-50%, -50%);
+}
