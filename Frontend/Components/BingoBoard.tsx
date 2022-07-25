@@ -1,7 +1,7 @@
 import { Box, Typography, Grid, Stack } from "@mui/material";
 import { FC, useState, useEffect } from "react";
 import styles from "../styles/BingoBoard.module.scss";
-import ClearMark from "../public/images/Clear.png";
+import ClearMark from "../public/img/Clear.png";
 import Image from "next/image";
 
 const BingoBoard: FC = () => {
