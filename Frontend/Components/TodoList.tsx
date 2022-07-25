@@ -10,7 +10,7 @@ const TodoList: FC<ITodoList> = ({ todoList }) => {
   return (
     <>
       <Stack direction="row" alignItems="center">
-        <Checkbox style={{ color: "#F6D28C" }} />
+        <Checkbox style={{ color: "#CA9F09" }} />
         <Typography>{todoList.title}</Typography>
       </Stack>
     </>
