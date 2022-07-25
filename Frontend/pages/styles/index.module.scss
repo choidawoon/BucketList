@@ -8,14 +8,31 @@
 .maindiv {
     display: flex;
     text-align: center;
-    justify-content: center;
 }
 
 .mainimg {
-    width: 30%;
+    width: 600px;
+    height: 750px;
     border-radius: 10px;
+    margin-right: 1%;
+    margin-left: -0.5%;
 }
 
 .content {
     width: 30%;
+}
+
+.mylist {
+    width: 500px;
+    height: 370px;
+    border: 2px solid blue;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.otherlist {
+    width: 500px;
+    height: 370px;
+    border: 2px solid green;
+    border-radius: 10px;
 }
