@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from '../Components/common/Footer';
 import Navibar from '../Components/common/Navibar';
 
 type AppLayoutProps = {
@@ -8,8 +9,9 @@ type AppLayoutProps = {
 function Layout({ children }: AppLayoutProps) {
     return (
         <>
-        <Navibar></Navibar>
+            <Navibar></Navibar>
             {children}
+            <Footer></Footer>
         </>
     );
 }
