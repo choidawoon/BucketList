@@ -6,6 +6,43 @@
   transform: translate(-50%, -45%);
 }
 
+.bingoboard {
+  margin-top: auto;
+  margin-bottom: auto;
+  height: 630px;
+  width: 600px;
+}
+
+.tododiv {
+  display: flex;
+  align-self: center;
+  width: 65%;
+  margin-left: 80px;
+}
+
+.todo {
+  width: 100%;
+  float: left;
+  font-weight: bold;
+  text-align-last: center;
+}
+
+.button {
+  width: 30%;
+}
+
+.todolist {
+  position: relative;
+  height: 300px;
+  width: 400px;
+}
+
+.donelist {
+  position: relative;
+  height: 300px;
+  width: 400px;
+}
+
 .scroolBar {
   /* width: 200px;
   height: 200px; */
@@ -30,4 +67,14 @@
 
 .scroolBar::-webkit-scrollbar-track {
   background: "#FCF8F0"; /*스크롤바 뒷 배경 색상*/
+}
+
+.modal {
+  width: 50%;
+  height: 70%;
+  background-color: white;
+  transform: translate(50%, 20%);
+  background-color: #f9f3c4;
+  border-radius: 10px;
+  padding: 2% 2% 2% 2%;
 }

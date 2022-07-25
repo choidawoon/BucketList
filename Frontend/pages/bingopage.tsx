@@ -2,8 +2,8 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/index.module.scss";
+import * as React from 'react';
 
-import Navibar from "../Components/common/Navibar";
 import { useState } from "react";
 import {
     Container,
@@ -13,6 +13,8 @@ import {
     Grid,
     Paper,
     Stack,
+    Button,
+    Modal,
 } from "@mui/material";
 
 import BingoBoard from "../Components/BingoBoard";
@@ -23,6 +25,9 @@ import BingoBg from "../public/img/BingoBg.png";
 
 const BingoPage: NextPage = () => {
     const [isLogin, setIsLogin] = useState<boolean>(true);
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
     const Bingo = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 
@@ -121,26 +126,27 @@ const BingoPage: NextPage = () => {
         >
             <Grid
             item
-            xs={10}
-            md={5}
+            // xs={10}
+            // md={5.5}
             sx={{
                 display: "flex",
             }}
             position="relative"
-            height="100%"
+            // height="100%"
+            className={styles.bingoboard}        
             >
-            <Image src={BingoBg} alt="Bingo Board"></Image>
-            <Grid
-                sx={gridContainer}
-                className={styles.grid_container}
-                height="75%"
-                width="85%"
-            >
-                {Bingo.map((item, i) => (
-                <BingoBoard key={i} />
-                ))}
-            </Grid>
-            </Grid>
+                <Image src={BingoBg} alt="Bingo Board"></Image>
+                    <Grid
+                        sx={gridContainer}
+                        className={styles.grid_container}
+                        height="75%"
+                        width="85%"
+                    >
+                        {Bingo.map((item, i) => (
+                        <BingoBoard key={i} />
+                        ))}
+                    </Grid>
+                </Grid>
             <Grid
             container
             direction="column"
@@ -150,16 +156,22 @@ const BingoPage: NextPage = () => {
             alignContent="center"
             justifyContent="center"
             height="100%"
-            >
-            <Typography
-                textAlign="center"
-                variant="h4"
-                sx={{ fontWeight: "bold" }}
-            >
-                To Do
-            </Typography>
-            <Grid position="relative" height="70%" width="70%">
-                <Image src={TodoBoard} alt="Bingo Board"></Image>
+            display="flex"        
+                >
+            <div className={styles.tododiv}>
+                <Typography
+                    // textAlign="center"
+                    variant="h4"
+                    className={styles.todo}        
+                >
+                    To Do
+                </Typography>
+                <Button className={styles.button} onClick={handleOpen}>추가하기</Button>
+            </div>
+            
+            <Grid className={styles.todolist}>
+                        <Image src={TodoBoard} alt="Bingo Board"></Image>
+                        
                 <Box className={styles.scroolBar} height="70%" width="90%">
                 {dummyTodoList.length > 0 ? (
                     dummyTodoList.map((item, i) => (
@@ -169,19 +181,37 @@ const BingoPage: NextPage = () => {
                     <Typography>Todo List가 비어있습니다.</Typography>
                 )}
                 </Box>
+                {/* <Button>Primary</Button> */}
             </Grid>
             <Typography
                 textAlign="center"
                 variant="h4"
-                sx={{ fontWeight: "bold", mt: 3 }}
+                sx={{ fontWeight: "bold" }}
+                
             >
                 Done
             </Typography>
-            <Grid position="relative" height="70%" width="70%">
+            <Grid className={styles.donelist}>
                 <Image src={DoneBoard} alt="Bingo Board"></Image>
             </Grid>
             </Grid>
-        </Grid>
+            </Grid>
+            
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box className={styles.modal}>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                    Text in a modal
+                </Typography>
+                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                    Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+                </Typography>
+                </Box>
+            </Modal>
         </>
     );
 };
