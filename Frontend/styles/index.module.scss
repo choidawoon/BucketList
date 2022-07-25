@@ -1,5 +1,6 @@
 .grid_container {
   position: absolute;
+  // position: relative;
   padding: 5px 10px;
   top: 50%;
   left: 50%;
@@ -60,7 +61,7 @@
 
 .scroolBar::-webkit-scrollbar-thumb {
   height: 20%; /* 스크롤바의 길이 */
-  background: #5b321e; /* 스크롤바의 색상 */
+  background: #ca9f09; /* 스크롤바의 색상 */
 
   border-radius: 10px;
 }
@@ -77,4 +78,29 @@
   background-color: #f9f3c4;
   border-radius: 10px;
   padding: 2% 2% 2% 2%;
+}
+.scroolBar_done {
+  /* width: 200px;
+  height: 200px; */
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -45%);
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.scroolBar_done::-webkit-scrollbar {
+  width: 10px; /* 스크롤바의 너비 */
+}
+
+.scroolBar_done::-webkit-scrollbar-thumb {
+  height: 20%; /* 스크롤바의 길이 */
+  background: #189f25; /* 스크롤바의 색상 */
+
+  border-radius: 10px;
+}
+
+.scroolBar_done::-webkit-scrollbar-track {
+  background: "#FCF8F0"; /*스크롤바 뒷 배경 색상*/
 }

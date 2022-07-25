@@ -1,6 +1,22 @@
 .bingo_box {
   overflow: hidden;
   word-break: keep-all;
+  background-color: #f3f6f9;
+  height: 90%;
+  width: 90%;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: auto;
+
+  &:hover,
+  &:focus {
+    transform: translateY(-3px);
+    box-shadow: 0 0 10px #1a8cdf;
+    cursor: pointer;
+  }
 }
 
 .bingo_box_text {
@@ -10,4 +26,35 @@
   left: 50%;
   font-size: small;
   transform: translate(-50%, -50%);
+}
+
+.button_green {
+  background-color: #7ad683;
+  color: white;
+  font-weight: bold;
+  &:hover,
+  &:focus {
+    background-color: #189f25;
+    // border: 2px solid white;
+  }
+}
+
+.button_yellow {
+  background-color: #dabd56;
+  color: white;
+  font-weight: bold;
+  &:hover,
+  &:focus {
+    background-color: #ca9f09;
+  }
+}
+
+.button_blue {
+  // background-color: #5ea6da;
+  color: #0489e8;
+  font-weight: bold;
+  &:hover,
+  &:focus {
+    background-color: #e8eaec;
+  }
 }
