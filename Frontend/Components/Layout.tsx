@@ -1,6 +1,6 @@
 import react, { ReactNode, FC } from "react";
 import { NextPage } from "next";
-import Navbar from "../pages/common/Navibar";
+import Navbar from "./common/Navibar";
 
 interface Props {
   children: ReactNode;
