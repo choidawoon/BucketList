@@ -16,11 +16,13 @@ const Home: NextPage = () => {
         <div className={styles.maindiv}>
           <img className={styles.mainimg} src='/img/MainImg.png' />
           <div>
-            <div className={styles.mylist} onClick={moveBucket}>
-              나의 버킷리스트 보기
+            <div className={styles.imgdiv}>
+              <img className={styles.myimg} src='/img/My.png' onClick={moveBucket}></img>
+              <a className={styles.text}>나의 버킷리스트 보기</a>
             </div>
-            <div className={styles.otherlist}>
-              다른 사람의 버킷리스트 보기
+            <div className={styles.imgdiv}>
+              <img className={styles.otherimg} src='/img/Together.png' onClick={moveBucket}></img>
+              <a className={styles.text}>친구의 버킷리스트 보기</a>
             </div>
           </div>
         </div>
