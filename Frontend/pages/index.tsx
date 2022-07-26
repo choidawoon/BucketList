@@ -15,7 +15,7 @@ const Home: NextPage = () => {
       <Grid className={styles.mainGrid} container sx={{ mt: 15, mx: "auto" }}>
         <div className={styles.maindiv}>
           <img className={styles.mainimg} src='/img/MainImg.png' />
-          <div className={styles.content}>
+          <div>
             <div className={styles.mylist} onClick={moveBucket}>
               나의 버킷리스트 보기
             </div>

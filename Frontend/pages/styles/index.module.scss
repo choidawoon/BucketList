@@ -7,8 +7,7 @@
 
 .maindiv {
     display: flex;
-    text-align: center;
-}
+    text-align: center;}
 
 .mainimg {
     width: 600px;
@@ -16,10 +15,12 @@
     border-radius: 10px;
     margin-right: 1%;
     margin-left: -0.5%;
+    animation: move 1s linear forwards; /* 애니메이션 적용 */
 }
 
-.content {
-    width: 30%;
+@keyframes move {
+	0% {margin-top: 50px;} /* 처음 위치 */
+	100% {margin-top: 0px;} /* 마지막 위치 */
 }
 
 .mylist {
@@ -28,6 +29,7 @@
     border: 2px solid blue;
     border-radius: 10px;
     margin-bottom: 10px;
+    animation: move 1.5s linear forwards; /* 애니메이션 적용 */
 }
 
 .otherlist {
@@ -35,4 +37,10 @@
     height: 370px;
     border: 2px solid green;
     border-radius: 10px;
+    animation: move2 3s linear forwards; /* 애니메이션 적용 */
+}
+
+@keyframes move2 {
+	0% {margin-top: 20px;} /* 처음 위치 */
+	100% {margin-top: 0px;} /* 마지막 위치 */
 }
