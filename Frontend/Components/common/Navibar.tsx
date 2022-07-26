@@ -22,20 +22,23 @@ const Navibar = () => {
                 </div>
             </div>
 
-            <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-            >
-                <Box className={styles.modal}>
-                <h1>로그인</h1>
-                    <p className={styles.p}>아이디</p>
-                    <input className={styles.input} placeholder="아이디를 입력하세요..."/>
-                    <p className={styles.p}>비밀번호</p>
-                    <input className={styles.input} placeholder="비밀번호를 입력하세요..."/>
-                </Box>
-            </Modal>
+            <div>
+                <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                    className={styles.modal_back}
+                >
+                    <Box className={styles.modal}>
+                    <h1>로그인</h1>
+                        <p className={styles.p}>아이디</p>
+                        <input className={styles.input} placeholder="아이디를 입력하세요..."/>
+                        <p className={styles.p}>비밀번호</p>
+                        <input className={styles.input} placeholder="비밀번호를 입력하세요..."/>
+                    </Box>
+                </Modal>
+            </div>
         </header>
     );
 };
