@@ -72,12 +72,12 @@
 
 .modal {
   width: 50%;
-  height: 70%;
+  height: 55%;
   background-color: white;
-  transform: translate(50%, 20%);
+  transform: translate(50%, 30%);
   background-color: #f9f3c4;
   border-radius: 10px;
-  padding: 2% 2% 2% 2%;
+  padding: 2% 3% 2% 3%;
 }
 .scroolBar_done {
   /* width: 200px;
@@ -97,10 +97,38 @@
 .scroolBar_done::-webkit-scrollbar-thumb {
   height: 20%; /* 스크롤바의 길이 */
   background: #189f25; /* 스크롤바의 색상 */
-
   border-radius: 10px;
 }
 
 .scroolBar_done::-webkit-scrollbar-track {
   background: "#FCF8F0"; /*스크롤바 뒷 배경 색상*/
+}
+
+.input {
+  height: 65%;
+  width: 100%;
+  padding: 0% 2% 0% 2%;
+  margin-top: 2%;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 100%;
+}
+
+.section {
+  margin-bottom: 3%;
+}
+
+.addButton1 {
+  font-size: 120%;
+  color: blue;
+  font-weight: bold;
+  text-align: end;
+}
+
+.addButton2 {
+  font-size: 120%;
+  color: blue;
+  font-weight: bold;
 }

@@ -15,6 +15,10 @@ import {
   Stack,
   Button,
   Modal,
+  Checkbox,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
 } from "@mui/material";
 
 import BingoBoard from "../Components/BingoBoard";
@@ -27,8 +31,11 @@ import BingoBg from "../public/img/BingoBg.png";
 const BingoPage: NextPage = () => {
   const [isLogin, setIsLogin] = useState<boolean>(true);
   const [open, setOpen] = React.useState(false);
+  const [record, setRecord] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const recordOpen = () => setRecord(true);
+  const recordClose = () => setRecord(false);
 
   const bingoList = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 
@@ -228,12 +235,70 @@ const BingoPage: NextPage = () => {
         aria-describedby="modal-modal-description"
       >
         <Box className={styles.modal}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
+          <Grid container spacing={3} className={styles.section}>
+            <Grid item xs={3}>
+              <p className={styles.title}>제목</p>
+            </Grid>
+            <Grid item xs={9}>
+              <input className={styles.input} placeholder="제목을 입력하세요..."></input>
+            </Grid>
+          </Grid>
+
+          <Grid container spacing={3} className={styles.section}>
+            <Grid item xs={3}>
+              <p className={styles.title}>설명</p>
+            </Grid>
+            <Grid item xs={9}>
+              <input className={styles.input} placeholder="설명을 입력하세요..."></input>
+            </Grid>
+          </Grid>
+
+          <Grid container spacing={3} className={styles.section}>
+            <Grid item xs={3}>
+              <p className={styles.title}>태그</p>
+            </Grid>
+            <Grid item xs={9}>
+              <input className={styles.input} placeholder="태그을 입력하세요..."></input>
+            </Grid>
+          </Grid>
+
+          <Grid container spacing={3} className={styles.section}>
+            <Grid item xs={3}>
+              <p className={styles.title}>유형</p>
+            </Grid>
+            <Grid item xs={9}>
+              <RadioGroup row className={styles.input}>
+                <FormControlLabel value="record" control={<Radio />} label="기록형" onClick={recordOpen}/>
+                <FormControlLabel value="success" control={<Radio />} label="달성형" onClick={recordClose} />
+              </RadioGroup>
+            </Grid>
+          </Grid>
+          
+          {
+            record === true ?
+              (
+                <Grid container spacing={3} className={styles.section}>
+                  <Grid item xs={3}>
+                    <p className={styles.title}>태그</p>
+                  </Grid>
+                  <Grid item xs={9}>
+                    <input className={styles.input} placeholder="태그을 입력하세요..."></input>
+                  </Grid>
+                </Grid>
+              ) : (
+                <div style={{height: "18%"}}></div>
+              )
+          }
+
+          <Grid container spacing={3} className={styles.section}>
+            <Grid item xs={6}>
+              <Button variant="text" className={styles.addButton1}>추가</Button>
+            </Grid>
+            <Grid item xs={6}>
+              <Button variant="text" className={styles.addButton2}>닫기</Button>
+            </Grid>
+          </Grid>
+          
         </Box>
       </Modal>
     </>
