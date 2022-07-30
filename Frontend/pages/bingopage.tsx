@@ -290,8 +290,8 @@ const BingoPage: NextPage = () => {
               )
           }
 
-          <Grid container spacing={3} className={styles.section}>
-            <Grid item xs={6}>
+          <Grid container spacing={3}>
+            <Grid item xs={6} style={{textAlignLast: "right"}}>
               <Button variant="text" className={styles.addButton1}>추가</Button>
             </Grid>
             <Grid item xs={6}>
