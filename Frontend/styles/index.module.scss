@@ -1,0 +1,133 @@
+.grid_container {
+  position: absolute;
+  // position: relative;
+  padding: 5px 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -45%);
+}
+
+.bingoboard {
+  margin-top: auto;
+  margin-bottom: auto;
+  height: 630px;
+  width: 600px;
+}
+
+.tododiv {
+  display: flex;
+  align-self: center;
+  width: 65%;
+  margin-left: 80px;
+}
+
+.todo {
+  width: 100%;
+  float: left;
+  font-weight: bold;
+  text-align-last: center;
+}
+
+.button {
+  width: 30%;
+}
+
+.todolist {
+  position: relative;
+  height: 300px;
+  width: 400px;
+}
+
+.donelist {
+  position: relative;
+  height: 300px;
+  width: 400px;
+}
+
+.scroolBar {
+  /* width: 200px;
+  height: 200px; */
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -45%);
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.scroolBar::-webkit-scrollbar {
+  width: 10px; /* 스크롤바의 너비 */
+}
+
+.scroolBar::-webkit-scrollbar-thumb {
+  height: 20%; /* 스크롤바의 길이 */
+  background: #ca9f09; /* 스크롤바의 색상 */
+
+  border-radius: 10px;
+}
+
+.scroolBar::-webkit-scrollbar-track {
+  background: "#FCF8F0"; /*스크롤바 뒷 배경 색상*/
+}
+
+.modal {
+  width: 30%;
+  height: 45%;
+  background-color: white;
+  transform: translate(120%, 50%);
+  background-color: #f9f3c4;
+  border-radius: 10px;
+  padding: 2% 3% 2% 3%;
+}
+.scroolBar_done {
+  /* width: 200px;
+  height: 200px; */
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -45%);
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.scroolBar_done::-webkit-scrollbar {
+  width: 10px; /* 스크롤바의 너비 */
+}
+
+.scroolBar_done::-webkit-scrollbar-thumb {
+  height: 20%; /* 스크롤바의 길이 */
+  background: #189f25; /* 스크롤바의 색상 */
+  border-radius: 10px;
+}
+
+.scroolBar_done::-webkit-scrollbar-track {
+  background: "#FCF8F0"; /*스크롤바 뒷 배경 색상*/
+}
+
+.input {
+  height: 65%;
+  width: 100%;
+  padding: 0% 2% 0% 2%;
+  margin-top: 2%;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 100%;
+}
+
+.section {
+  margin-bottom: 3%;
+}
+
+.addButton1 {
+  font-size: 120%;
+  color: blue;
+  font-weight: bold;
+}
+
+.addButton2 {
+  font-size: 120%;
+  color: blue;
+  font-weight: bold;
+}

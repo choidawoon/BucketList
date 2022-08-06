@@ -1,0 +1,20 @@
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: #f9f3c4;
+    height: 70px;
+    z-index: 1;
+}
+
+.contents {
+    display: flex;
+    width: 90%;
+    max-width: 1100px;
+    height: 100%;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+}
