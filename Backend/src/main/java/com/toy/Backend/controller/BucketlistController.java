@@ -1,5 +1,6 @@
 package com.toy.Backend.controller;
 
+import com.toy.Backend.dto.BucketlistDetailDto;
 import com.toy.Backend.dto.BucketlistRegisterDto;
 import com.toy.Backend.service.BucketlistService;
 import io.swagger.annotations.ApiOperation;
@@ -47,5 +48,14 @@ public class BucketlistController {
         resultMap = bucketlistService.getBucketlist(memerId, type);
 
         return new ResponseEntity(resultMap, HttpStatus.OK);
+    }
+
+    @ApiOperation(value="버킷리스트 상세 조회")
+    @GetMapping("/detail/{bucketlistId}")
+    public ResponseEntity getDetail(@ApiParam(value = "조회할 bucketlistId", required = true) @PathVariable Integer bucketlistId) {
+
+        BucketlistDetailDto bucketlistDetailDto = bucketlistService.getBucketlistDetail(bucketlistId);
+
+        return new ResponseEntity(bucketlistDetailDto, HttpStatus.OK);
     }
 }
