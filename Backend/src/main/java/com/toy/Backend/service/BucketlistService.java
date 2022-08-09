@@ -1,6 +1,7 @@
 package com.toy.Backend.service;
 
 import com.toy.Backend.dto.BucketlistRegisterDto;
+import com.toy.Backend.dto.BucketlistResDto;
 import com.toy.Backend.entity.*;
 import com.toy.Backend.repository.BucketlistRepository;
 import com.toy.Backend.repository.BucketlistTagRepository;
@@ -8,8 +9,8 @@ import com.toy.Backend.repository.HashtagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class BucketlistService {
@@ -39,8 +40,8 @@ public class BucketlistService {
     }
 
     public void saveHashtag(Bucketlist bucketlist, List<String> tag){
+
         for(String str : tag){
-            System.out.println(str);
 
             Optional<Hashtag> tagOp = hashtagRepository.findByName(str);
 
@@ -57,5 +58,51 @@ public class BucketlistService {
 
     public void deleteHashtag(){
 
+    }
+
+    public Map<String, Object> getBucketlist(String memberId, String type){
+        Map<String, Object> resultMap = new HashMap<>();
+
+        memberId = memberId==null? "U001" : memberId; //null일 경우 본인
+        Member member = memberService.getMember(memberId);
+
+        List<Bucketlist> bucketlistEntityList = bucketlistRepository.findByMember(member);
+        List<BucketlistResDto> bucketlistResDtos;
+
+        if(type.equals("bingo")){
+            bucketlistResDtos= bucketlistEntityList.stream()
+                    .filter(bucketlist -> !bucketlist.getPosition().equals(0) && !bucketlist.getStatus().equals(2))
+                    .map(bucketlist -> BucketlistResDto.builder()
+                            .title(bucketlist.getTitle())
+                            .position(bucketlist.getPosition())
+                            .check(bucketlist.getStatus().equals(1))
+                            .build())
+                    .collect(Collectors.toList());
+        }
+
+        else if(type.equals("todo")){
+            bucketlistResDtos = bucketlistEntityList.stream()
+                    .filter(bucketlist -> bucketlist.getStatus().equals(0))
+                    .map(bucketlist -> BucketlistResDto.builder()
+                            .title(bucketlist.getTitle())
+                            .check(false)
+                            .build())
+                    .collect(Collectors.toList());
+        }
+
+        else { //completed
+            bucketlistResDtos = bucketlistEntityList.stream()
+                    .filter(bucketlist -> bucketlist.getStatus().equals(1))
+                    .map(bucketlist -> BucketlistResDto.builder()
+                            .title(bucketlist.getTitle())
+                            .check(true)
+                            .build())
+                    .collect(Collectors.toList());
+        }
+
+        resultMap.put("bucketlist", bucketlistResDtos);
+        resultMap.put("message", "버킷리스트 조회 성공");
+
+        return resultMap;
     }
 }
