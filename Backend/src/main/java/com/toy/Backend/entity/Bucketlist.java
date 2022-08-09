@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -12,6 +13,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Getter
 @Builder
+@DynamicInsert
 @AllArgsConstructor
 @NoArgsConstructor
 public class Bucketlist {
@@ -45,12 +47,17 @@ public class Bucketlist {
 
     private Integer count;
 
-    @Column(columnDefinition = "TINYINT")
+    @Column(nullable = false)
     @ColumnDefault("0")
-    @NotNull
-    private Boolean status;
+    private Integer position;
+
+    @Column(columnDefinition = "TINYINT", nullable = false)
+    @ColumnDefault("0")
+    private Integer status;
 
     @OneToOne
     @JoinColumn(name = "POST_ID")
     private Post post;
+
+    public void changeCount(Integer count){this.count = count;}
 }
