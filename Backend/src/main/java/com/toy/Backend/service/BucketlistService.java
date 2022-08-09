@@ -10,6 +10,7 @@ import com.toy.Backend.repository.BucketlistTagRepository;
 import com.toy.Backend.repository.HashtagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -142,5 +143,16 @@ public class BucketlistService {
                 .build();
 
         return bucketlistDetailDto;
+    }
+
+    @Transactional
+    public void deleteBucketlist(Integer bucketlistId){
+
+        Bucketlist bucketlist = bucketlistRepository.findById(bucketlistId).get();
+
+        Member member = memberService.getMember("U001");
+        //본인 버킷리스트만 삭제
+
+        bucketlist.changeStatus(2);
     }
 }

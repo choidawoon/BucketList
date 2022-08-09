@@ -58,4 +58,16 @@ public class BucketlistController {
 
         return new ResponseEntity(bucketlistDetailDto, HttpStatus.OK);
     }
+
+    @ApiOperation(value="버킷리스트 삭제")
+    @DeleteMapping("{bucketlistId}")
+    public ResponseEntity deleteBucketlist(@ApiParam(value = "삭제할 bucketlistId", required = true) @PathVariable Integer bucketlistId) {
+
+        System.out.println(bucketlistId + "삭제하기");
+        
+        bucketlistService.deleteBucketlist(bucketlistId);
+
+        return new ResponseEntity("버킷리스트 삭제 완료", HttpStatus.OK);
+    }
+
 }
