@@ -155,4 +155,37 @@ public class BucketlistService {
 
         bucketlist.changeStatus(2);
     }
+
+    @Transactional
+    public void updatePosition(Integer bucketlistId, Integer position){
+
+        Bucketlist bucketlist = bucketlistRepository.findById(bucketlistId).get();
+
+        Member member = memberService.getMember("U001");
+        //본인 버킷리스트만 수정
+
+        bucketlist.changePosition(position);
+    }
+
+    @Transactional
+    public void initPosition(){
+
+        Member member = memberService.getMember("U001");
+        //본인 버킷리스트만 수정
+
+        bucketlistRepository.initPosition(member);
+    }
+
+    @Transactional
+    public void updateStatus(Integer bucketlistId){
+
+        Member member = memberService.getMember("U001");
+        //본인 버킷리스트만 수정
+
+        Bucketlist bucketlist = bucketlistRepository.findById(bucketlistId).get();
+
+        bucketlist.changeStatus(bucketlist.getStatus() == 0 ? 1: 0);
+        //완료 알림?
+    }
+
 }

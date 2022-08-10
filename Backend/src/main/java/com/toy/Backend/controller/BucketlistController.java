@@ -70,4 +70,34 @@ public class BucketlistController {
         return new ResponseEntity("버킷리스트 삭제 완료", HttpStatus.OK);
     }
 
+    //버킷리스트 수정
+
+    @ApiOperation(value="버킷리스트 포지션 수정")
+    @PutMapping("/position/{bucketlistId}")
+    public ResponseEntity updatePosition(@ApiParam(value = "수정할 bucketlistId", required = true) @PathVariable Integer bucketlistId,
+                                        @ApiParam(value = "수정할 position", required = true) @RequestParam Integer position) {
+
+        bucketlistService.updatePosition(bucketlistId, position);
+
+        return new ResponseEntity("버킷리스트 포지션 수정 완료", HttpStatus.OK);
+    }
+
+    @ApiOperation(value="버킷리스트 포지션 초기화", notes = "모든 position을 0으로 초기화")
+    @PutMapping("/initPosition")
+    public ResponseEntity initPosition() {
+
+        bucketlistService.initPosition();
+
+        return new ResponseEntity("버킷리스트 포지션 초기화 완료", HttpStatus.OK);
+    }
+
+    @ApiOperation(value="버킷리스트 상태 수정", notes = "상태 변경(진행 ↔ 완료)")
+    @PutMapping("/status/{bucketlistId}")
+    public ResponseEntity updateStatus(@ApiParam(value = "수정할 bucketlistId", required = true) @PathVariable Integer bucketlistId) {
+
+        bucketlistService.updateStatus(bucketlistId);
+
+        return new ResponseEntity("버킷리스트 포지션 수정 완료", HttpStatus.OK);
+    }
+
 }
