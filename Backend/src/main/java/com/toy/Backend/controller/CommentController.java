@@ -1,6 +1,6 @@
 package com.toy.Backend.controller;
 
-import com.toy.Backend.dto.CommentReqDto;
+import com.toy.Backend.dto.CommentReqDto.*;
 import com.toy.Backend.service.CommentService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -25,9 +25,9 @@ public class CommentController {
 
     @ApiOperation(value="댓글 등록")
     @PostMapping
-    public ResponseEntity registerComment(@RequestBody @ApiParam(required = true) CommentReqDto commentReqDto){
+    public ResponseEntity registerComment(@RequestBody @ApiParam(required = true) CommentRegisterDto commentRegisterDto){
 
-        commentService.registerComment(commentReqDto);
+        commentService.registerComment(commentRegisterDto);
 
         return new ResponseEntity("댓글 등록 완료", HttpStatus.OK);
     }

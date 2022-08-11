@@ -7,21 +7,32 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-@Data
-@ApiModel(value = "CommentReqDto", description = "댓글 등록, 수정 요청")
 public class CommentReqDto {
 
-    @ApiModelProperty(value = "후기 ID")
-    private Integer postId;
+    @Data
+    @ApiModel(value = "CommentRegisterDto", description = "댓글 등록 요청")
+    public static class CommentRegisterDto{
 
-    @ApiModelProperty(value = "내용", example = "댓글입니다")
-    private String content;
+        @ApiModelProperty(value = "후기 ID")
+        private Integer postId;
 
-    public Comment toEntity(Member member, Post post){
-        return Comment.builder()
-                .member(member)
-                .post(post)
-                .content(content)
-                .build();
+        @ApiModelProperty(value = "내용", example = "댓글입니다")
+        private String content;
+
+        public Comment toEntity(Member member, Post post){
+            return Comment.builder()
+                    .member(member)
+                    .post(post)
+                    .content(content)
+                    .build();
+        }
+    }
+
+    @Data
+    @ApiModel(value = "CommentUpdateDto", description = "댓글 수정 요청")
+    public static class CommentUpdateDto{
+
+        private Integer commentId;
+        private String content;
     }
 }

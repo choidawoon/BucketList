@@ -1,6 +1,6 @@
 package com.toy.Backend.service;
 
-import com.toy.Backend.dto.CommentReqDto;
+import com.toy.Backend.dto.CommentReqDto.*;
 import com.toy.Backend.dto.CommentResDto;
 import com.toy.Backend.entity.Comment;
 import com.toy.Backend.entity.Member;
@@ -26,14 +26,14 @@ public class CommentService {
     @Autowired
     private MemberService memberService;
 
-    public void registerComment(CommentReqDto commentReqDto){
+    public void registerComment(CommentRegisterDto commentRegisterDto){
 
         //시큐리티 적용 전 임시 회원
         Member member = memberService.getMember("U001");
 
-        Post post = postRepository.findById(commentReqDto.getPostId()).get();
+        Post post = postRepository.findById(commentRegisterDto.getPostId()).get();
 
-        Comment comment = commentReqDto.toEntity(member, post);
+        Comment comment = commentRegisterDto.toEntity(member, post);
         commentRepository.save(comment);
     }
 
