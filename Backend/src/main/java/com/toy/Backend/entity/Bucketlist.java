@@ -55,10 +55,6 @@ public class Bucketlist {
     @ColumnDefault("0")
     private Integer status;
 
-    @OneToOne
-    @JoinColumn(name = "POST_ID")
-    private Post post;
-
     public void changeCount(Integer count){this.count = count;}
 
     public void changeStatus(Integer status){this.status = status;}
