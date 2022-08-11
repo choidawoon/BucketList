@@ -40,4 +40,6 @@ public class Comment {
     @CreationTimestamp
     @Column(columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP", nullable = false)
     private LocalDateTime createDate;
+
+    public void updateContent(String content){this.content = content;}
 }

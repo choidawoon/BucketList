@@ -9,6 +9,7 @@ import com.toy.Backend.repository.CommentRepository;
 import com.toy.Backend.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -60,5 +61,27 @@ public class CommentService {
         resultMap.put("message", "댓글 조회 성공");
 
         return resultMap;
+    }
+
+    @Transactional
+    public void updateComment(CommentUpdateDto commentUpdateDto){
+
+        Comment comment = commentRepository.findById(commentUpdateDto.getCommentId()).get();
+
+        Member member = memberService.getMember("U001");
+        //본인 댓글만 수정
+
+        comment.updateContent(commentUpdateDto.getContent());
+    }
+
+    @Transactional
+    public void deleteComment(Integer commentId){
+
+        Comment comment = commentRepository.findById(commentId).get();
+
+        Member member = memberService.getMember("U001");
+        //본인 댓글만 삭제
+
+        commentRepository.deleteById(commentId);
     }
 }

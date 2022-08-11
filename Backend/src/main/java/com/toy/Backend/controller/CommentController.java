@@ -42,4 +42,21 @@ public class CommentController {
         return new ResponseEntity(resultMap, HttpStatus.OK);
     }
 
+    @ApiOperation(value="댓글 수정")
+    @PutMapping
+    public ResponseEntity updateComment(@RequestBody @ApiParam(required = true) CommentUpdateDto commentUpdateDto){
+
+        commentService.updateComment(commentUpdateDto);
+
+        return new ResponseEntity("댓글 수정 완료", HttpStatus.OK);
+    }
+
+    @ApiOperation(value="댓글 삭제")
+    @DeleteMapping("{commentId}")
+    public ResponseEntity deleteComment(@ApiParam(value = "삭제할 commentId", required = true) @PathVariable Integer commentId){
+
+        commentService.deleteComment(commentId);
+
+        return new ResponseEntity("댓글 삭제 완료", HttpStatus.OK);
+    }
 }
