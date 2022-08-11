@@ -1,13 +1,16 @@
 package com.toy.Backend.service;
 
+import com.toy.Backend.dto.BucketlistDetailDto;
 import com.toy.Backend.dto.BucketlistRegisterDto;
 import com.toy.Backend.dto.BucketlistResDto;
 import com.toy.Backend.entity.*;
+import com.toy.Backend.repository.BookmarkRepository;
 import com.toy.Backend.repository.BucketlistRepository;
 import com.toy.Backend.repository.BucketlistTagRepository;
 import com.toy.Backend.repository.HashtagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -21,6 +24,8 @@ public class BucketlistService {
     private HashtagRepository hashtagRepository;
     @Autowired
     private BucketlistTagRepository bucketlistTagRepository;
+    @Autowired
+    private BookmarkRepository bookmarkRepository;
 
     @Autowired
     private MemberService memberService;
@@ -73,6 +78,7 @@ public class BucketlistService {
             bucketlistResDtos= bucketlistEntityList.stream()
                     .filter(bucketlist -> !bucketlist.getPosition().equals(0) && !bucketlist.getStatus().equals(2))
                     .map(bucketlist -> BucketlistResDto.builder()
+                            .id(bucketlist.getId())
                             .title(bucketlist.getTitle())
                             .position(bucketlist.getPosition())
                             .check(bucketlist.getStatus().equals(1))
@@ -84,6 +90,7 @@ public class BucketlistService {
             bucketlistResDtos = bucketlistEntityList.stream()
                     .filter(bucketlist -> bucketlist.getStatus().equals(0))
                     .map(bucketlist -> BucketlistResDto.builder()
+                            .id(bucketlist.getId())
                             .title(bucketlist.getTitle())
                             .check(false)
                             .build())
@@ -94,6 +101,7 @@ public class BucketlistService {
             bucketlistResDtos = bucketlistEntityList.stream()
                     .filter(bucketlist -> bucketlist.getStatus().equals(1))
                     .map(bucketlist -> BucketlistResDto.builder()
+                            .id(bucketlist.getId())
                             .title(bucketlist.getTitle())
                             .check(true)
                             .build())
@@ -105,4 +113,79 @@ public class BucketlistService {
 
         return resultMap;
     }
+
+    public BucketlistDetailDto getBucketlistDetail(Integer bucketlistId){
+
+        Member member = memberService.getMember("U001");
+
+        Bucketlist bucketlist = bucketlistRepository.findById(bucketlistId).get();
+
+        List<String> tagList = bucketlistTagRepository.findByBucketlistTagId_Bucketlist(bucketlist)
+                .stream().map(bt -> bt.getBucketlistTagId().getHashtag().getName())
+                .collect(Collectors.toList());
+
+        boolean bookmark = bookmarkRepository.findByBucketlistAndMember(bucketlist, member).isPresent();
+
+        BucketlistDetailDto bucketlistDetailDto = BucketlistDetailDto.builder()
+                .id(bucketlistId)
+                .memberId(bucketlist.getMember().getId())
+                .memberName(bucketlist.getMember().getName())
+                .title(bucketlist.getTitle())
+                .content(bucketlist.getContent())
+                .type(bucketlist.getType())
+                .category(bucketlist.getCategory())
+                .tag(tagList)
+                .totalCount(bucketlist.getTotalCount())
+                .count(bucketlist.getCount())
+                .position(bucketlist.getPosition())
+                .check(bucketlist.getStatus().equals(1))
+                .bookmark(bookmark)
+                .build();
+
+        return bucketlistDetailDto;
+    }
+
+    @Transactional
+    public void deleteBucketlist(Integer bucketlistId){
+
+        Bucketlist bucketlist = bucketlistRepository.findById(bucketlistId).get();
+
+        Member member = memberService.getMember("U001");
+        //본인 버킷리스트만 삭제
+
+        bucketlist.changeStatus(2);
+    }
+
+    @Transactional
+    public void updatePosition(Integer bucketlistId, Integer position){
+
+        Bucketlist bucketlist = bucketlistRepository.findById(bucketlistId).get();
+
+        Member member = memberService.getMember("U001");
+        //본인 버킷리스트만 수정
+
+        bucketlist.changePosition(position);
+    }
+
+    @Transactional
+    public void initPosition(){
+
+        Member member = memberService.getMember("U001");
+        //본인 버킷리스트만 수정
+
+        bucketlistRepository.initPosition(member);
+    }
+
+    @Transactional
+    public void updateStatus(Integer bucketlistId){
+
+        Member member = memberService.getMember("U001");
+        //본인 버킷리스트만 수정
+
+        Bucketlist bucketlist = bucketlistRepository.findById(bucketlistId).get();
+
+        bucketlist.changeStatus(bucketlist.getStatus() == 0 ? 1: 0);
+        //완료 알림?
+    }
+
 }

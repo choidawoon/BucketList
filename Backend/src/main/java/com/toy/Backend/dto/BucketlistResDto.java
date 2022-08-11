@@ -10,6 +10,8 @@ import lombok.Data;
 @ApiModel(value = "BucketlistResDto", description = "버킷리스트 응답")
 public class BucketlistResDto {
 
+    @ApiModelProperty(value = "번호", example = "1")
+    private Integer id;
 
     @ApiModelProperty(value = "제목", example = "패러글라이딩")
     private String title;

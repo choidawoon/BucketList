@@ -60,4 +60,8 @@ public class Bucketlist {
     private Post post;
 
     public void changeCount(Integer count){this.count = count;}
+
+    public void changeStatus(Integer status){this.status = status;}
+
+    public void changePosition(Integer position){this.position = position;}
 }
